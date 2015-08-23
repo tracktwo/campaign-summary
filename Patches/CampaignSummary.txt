@@ -1,0 +1,701 @@
+
+MOD_NAME=Campaign Summary
+AUTHOR=tracktwo
+DESCRIPTION=Adds a campaign summary screen to the situation room
+
+// UPDATE MAIN MENU
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGSituationRoomUI.UpdateMainMenu : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelLaunchSatellite> 
+/*(0x0026/0x0016)*/ 55 00 <.arrViews> [@] ( 24 04 16 ) 
+/*(0x0035/0x0021)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 25 
+/*(0x0053/0x0033)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelMonitorUFO> 
+/*(0x0079/0x0049)*/ 55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+/*(0x00A2/0x0062)*/ 55 00 <.arrViews> [@] ( 24 07 16 ) 
+/*(0x00B1/0x006D)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelCodeDecryption> 
+/*(0x00D7/0x0083)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 25 
+/*(0x00F5/0x0095)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelCodeDecrypted> 
+/*(0x011B/0x00AB)*/ 55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+/*(0x0144/0x00C4)*/ 07 [@label_0x0209] 19 1B <EXALT> 16 [@] <XGExaltSimulation.IsExaltActive.ReturnValue> 00 ( 1B <IsExaltActive> 16 ) 
+/*(0x0167/0x00E3)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelInfiltratorMode> 
+/*(0x018D/0x00F9)*/ 	55 00 <.arrViews> [@] ( 24 0C 16 ) 
+/*(0x019C/0x0104)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 25 
+/*(0x01BA/0x0116)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelInfiltratorHelp> 
+/*(0x01E0/0x012C)*/ 	55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+/*(0x0209/0x0145)*/ [#label_0x0209]
+/*(0x0209/0x0145)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelViewFinances> 
+/*(0x022F/0x015B)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 26 
+/*(0x024D/0x016D)*/ 55 00 <.arrViews> [@] ( 24 05 16 ) 
+/*(0x025C/0x0178)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 45 81 1B <ISCONTROLLED> 16 16 [@] ( 25 ) [@] ( 26 ) 
+/*(0x028C/0x019C)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelViewExpenditures> 
+/*(0x02B2/0x01B2)*/ 55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+/*(0x02DB/0x01CB)*/ 07 [@label_0x03B2] 19 1B <SITROOM> 16 [@] <XGFacility_SituationRoom.IsGreyMarketUnlocked.ReturnValue> 00 ( 1B <IsGreyMarketUnlocked> 16 ) 
+/*(0x02FE/0x01EA)*/ 	55 00 <.arrViews> [@] ( 24 06 16 ) 
+/*(0x030D/0x01F5)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_stdLabelVisitGreyMarket> 
+/*(0x0333/0x020B)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_stdLabelVisitGreyMarketHelp> 
+/*(0x0359/0x0221)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 45 81 1B <ISCONTROLLED> 16 16 [@] ( 25 ) [@] ( 26 ) 
+/*(0x0389/0x0245)*/ 	55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+/*(0x03B2/0x025E)*/ [#label_0x03B2]
+/*(0x03B2/0x025E)*/ 55 00 <.arrViews> [@] ( 24 08 16 ) 
+/*(0x03C1/0x0269)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 70 70 70 01 <@m_strLabelPendingRequests> 1F <%t " ("> 16 38 53 36 19 19 1B <World> 16 [@] <XGWorld.m_kFundingCouncil> 00 ( 01 <XGWorld.m_kFundingCouncil> ) [@] <XGFundingCouncil.m_arrCurrentRequests> 00 ( 01 <XGFundingCouncil.m_arrCurrentRequests> ) 16 1F <%t ")"> 16 
+/*(0x042B/0x02B3)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 01 <@m_strLabelPendingRequestsHelp> 
+/*(0x0451/0x02C9)*/ 07 [@label_0x04BF] 97 36 19 19 1B <World> 16 [@] <XGWorld.m_kFundingCouncil> 00 ( 01 <XGWorld.m_kFundingCouncil> ) [@] <XGFundingCouncil.m_arrCurrentRequests> 00 ( 01 <XGFundingCouncil.m_arrCurrentRequests> ) 25 16 
+/*(0x048C/0x02F4)*/ 	0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 45 81 1B <ISCONTROLLED> 16 16 [@] ( 25 ) [@] ( 26 ) 
+/*(0x04BC/0x0318)*/ 	06 [@label_0x04EF] 
+/*(0x04BF/0x031B)*/ [#label_0x04BF]
+/*(0x04BF/0x031B)*/ 0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 45 81 1B <ISCONTROLLED> 16 16 [@] ( 25 ) [@] ( 26 ) 
+/*(0x04EF/0x033F)*/ [#label_0x04EF]
+/*(0x04EF/0x033F)*/ 55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+
+55 00 <.arrViews> [@] ( 24 0E 16 )
+0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strText> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 1F <%t "Campaign Summary"> 
+0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.strHelp> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 1F <%t "Show campaign summary"> 
+0F 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 01 00 <.kOption> 45 81 1B <ISCONTROLLED> 16 16 [@] ( 25 ) [@] ( 26 )
+55 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 00 <.mnuMain> [@] ( 00 <.kOption> 16 ) 
+
+/*(0x0518/0x0358)*/ 0F 01 <@m_mnuMain> 00 <.mnuMain> 
+/*(0x052B/0x0363)*/ 0F 01 <@m_arrOptions> 00 <.arrViews> 
+
+/*(0x053E/0x036E)*/ 04 0B 
+/*(0x0540/0x0370)*/ 0B 
+/*(0x0541/0x0371)*/ 0B 
+/*(0x0542/0x0372)*/ 0B 
+/*(0x0543/0x0373)*/ 0B 
+/*(0x0544/0x0374)*/ 0B 
+/*(0x0545/0x0375)*/ 0B 
+/*(0x0546/0x0376)*/ 0B 
+/*(0x0547/0x0377)*/ 0B 
+/*(0x0548/0x0378)*/ 0B 
+/*(0x0549/0x0379)*/ 0B 
+/*(0x054A/0x037A)*/ 0B 
+/*(0x054B/0x037B)*/ 0B 
+/*(0x054C/0x037C)*/ 0B 
+/*(0x054D/0x037D)*/ 0B 
+/*(0x054E/0x037E)*/ 53 
+
+
+// COMPLETE ENGAGEMENT
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGInterception.CompleteEngagement : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 07 [@label_0x000F] 2D 01 <@m_bSimulatedCombat> 
+/*(0x000D/0x0009)*/ 	04 0B 
+/*(0x000F/0x000B)*/ [#label_0x000F]
+/*(0x000F/0x000B)*/ 07 [@label_0x006D] 9A 38 3A 01 <@m_eUFOResult> 38 3A 24 01 16 
+/*(0x0023/0x001B)*/ 	1B <ClearOtherEngagements> 01 <@m_kUFOTarget> 16 
+/*(0x0036/0x002A)*/ 	19 1B <AI> 16 [@] <NullRef> 00 ( 1B <OnUFOShotDown> 10 25 01 <@m_arrInterceptors> 01 <@m_kUFOTarget> 16 ) 
+/*(0x006A/0x0052)*/ 	06 [@label_0x00D6] 
+/*(0x006D/0x0055)*/ [#label_0x006D]
+/*(0x006D/0x0055)*/ 07 [@label_0x00AD] 9A 38 3A 01 <@m_eUFOResult> 38 3A 24 02 16 
+/*(0x0081/0x0065)*/ 	19 1B <AI> 16 [@] <NullRef> 00 ( 1B <OnUFODestroyed> 01 <@m_kUFOTarget> 16 ) 
+
+19 1B <GetRecapSaveData> 16 [@] <NullRef> 00 ( 1B <RecordEvent> 
+    A8 
+        A8
+            A8
+                A8
+                    A8
+                        A8 
+                            A8 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+                            16
+                            1F <%t ":"> 
+                        16
+                        19 10 25 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.GetCallsign.ReturnValue> 00 ( 1B <GetCallsign> 16 )
+                    16
+                    1F <%t "destroyed a">
+                16
+                38 53 38 3A 19 01 <@m_kUFOTarget> [@] <XGShip.GetType.ReturnValue> 00 ( 1B <GetType> 16 )
+            16
+            1F <%t "over">
+        16 
+        19 1B <Country> 19 01 <@m_kUFOTarget> [@] <XGShip_UFO.GetCountry.ReturnValue> 00 ( 1B <GetCountry> 16 ) 16 [@] <XGCountry.GetName.ReturnValue> 00 ( 1B <GetName> 16 )
+    16
+16 )  
+
+
+
+
+/*(0x00AA/0x0086)*/ 	06 [@label_0x00D6] 
+/*(0x00AD/0x0089)*/ [#label_0x00AD]
+/*(0x00AD/0x0089)*/ 19 1B <AI> 16 [@] <NullRef> 00 ( 1B <OnUFOAttacked> 01 <@m_kUFOTarget> 16 ) 
+/*(0x00D6/0x00AA)*/ [#label_0x00D6]
+/*(0x00D6/0x00AA)*/ 07 [@label_0x01C2] 82 9B 38 3A 01 <@m_eUFOResult> 38 3A 24 01 16 18 [@] ( 9B 38 3A 01 <@m_eUFOResult> 38 3A 24 02 16 16 ) 
+/*(0x0100/0x00CC)*/ 	0F 00 <.I> 25 
+/*(0x010B/0x00D3)*/ 	[#label_0x010B]
+/*(0x010B/0x00D3)*/ 	07 [@label_0x01BF] 96 00 <.I> 36 01 <@m_arrInterceptors> 16 
+/*(0x0123/0x00E3)*/ 		07 [@label_0x0188] 98 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip.GetHP.ReturnValue> 00 ( 1B <GetHP> 16 ) 25 16 
+/*(0x0152/0x0106)*/ 			19 1B <HANGAR> 16 [@] <NullRef> 00 ( 1B <OnInterceptorDestroyed> 10 00 <.I> 01 <@m_arrInterceptors> 16 ) 
+/*(0x0185/0x012D)*/ 			06 [@label_0x01B1] 
+/*(0x0188/0x0130)*/ 		[#label_0x0188]
+/*(0x0188/0x0130)*/ 		19 10 00 <.I> 01 <@m_arrInterceptors> [@] <NullRef> 00 ( 1B <ReturnToBase> 16 ) 
+/*(0x01B1/0x014D)*/ 		[#label_0x01B1]
+/*(0x01B1/0x014D)*/ 		A5 00 <.I> 16 
+/*(0x01BC/0x0154)*/ 		06 [@label_0x010B] 
+/*(0x01BF/0x0157)*/ 	[#label_0x01BF]
+/*(0x01BF/0x0157)*/ 	06 [@label_0x05C8] 
+/*(0x01C2/0x015A)*/ [#label_0x01C2]
+/*(0x01C2/0x015A)*/ 0F 00 <.I> 25 
+/*(0x01CD/0x0161)*/ [#label_0x01CD]
+/*(0x01CD/0x0161)*/ 07 [@label_0x05C8] 96 00 <.I> 36 01 <@m_arrInterceptors> 16 
+/*(0x01E5/0x0171)*/ 	07 [@label_0x024A] 98 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip.GetHP.ReturnValue> 00 ( 1B <GetHP> 16 ) 25 16 
+/*(0x0214/0x0194)*/ 		19 1B <HANGAR> 16 [@] <NullRef> 00 ( 1B <OnInterceptorDestroyed> 10 00 <.I> 01 <@m_arrInterceptors> 16 ) 
+/*(0x0247/0x01BB)*/ 		06 [@label_0x05BA] 
+/*(0x024A/0x01BE)*/ 	[#label_0x024A]
+/*(0x024A/0x01BE)*/ 	19 10 00 <.I> 01 <@m_arrInterceptors> [@] <NullRef> 00 ( 1B <ReturnToBase> 16 ) 
+/*(0x0273/0x01DB)*/ 	A1 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_iConfirmedKills> 00 ( 01 <XGShip_Interceptor.m_iConfirmedKills> ) 26 16 
+/*(0x029E/0x01F6)*/ 	07 [@label_0x05BA] 99 7E 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 1F <%t " "> 4A 4A 4A 16 2C 00 16 
+/*(0x02D5/0x021D)*/ 		0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 1C <Core.Object.Split> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 1F <%t " "> 27 16 
+/*(0x0334/0x0258)*/ 		07 [@label_0x03C0] 99 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_iConfirmedKills> 00 ( 01 <XGShip_Interceptor.m_iConfirmedKills> ) 2C 0A 16 
+/*(0x0363/0x0277)*/ 			0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) A8 1F <%t "Cmdr."> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 16 
+/*(0x03BD/0x02B1)*/ 			06 [@label_0x05BA] 
+/*(0x03C0/0x02B4)*/ 		[#label_0x03C0]
+/*(0x03C0/0x02B4)*/ 		07 [@label_0x044B] 99 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_iConfirmedKills> 00 ( 01 <XGShip_Interceptor.m_iConfirmedKills> ) 2C 07 16 
+/*(0x03EF/0x02D3)*/ 			0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) A8 1F <%t "Col."> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 16 
+/*(0x0448/0x030C)*/ 			06 [@label_0x05BA] 
+/*(0x044B/0x030F)*/ 		[#label_0x044B]
+/*(0x044B/0x030F)*/ 		07 [@label_0x04D6] 99 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_iConfirmedKills> 00 ( 01 <XGShip_Interceptor.m_iConfirmedKills> ) 2C 05 16 
+/*(0x047A/0x032E)*/ 			0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) A8 1F <%t "Maj."> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 16 
+/*(0x04D3/0x0367)*/ 			06 [@label_0x05BA] 
+/*(0x04D6/0x036A)*/ 		[#label_0x04D6]
+/*(0x04D6/0x036A)*/ 		07 [@label_0x0562] 99 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_iConfirmedKills> 00 ( 01 <XGShip_Interceptor.m_iConfirmedKills> ) 2C 03 16 
+/*(0x0505/0x0389)*/ 			0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) A8 1F <%t "Capt."> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 16 
+/*(0x055F/0x03C3)*/ 			06 [@label_0x05BA] 
+/*(0x0562/0x03C6)*/ 		[#label_0x0562]
+/*(0x0562/0x03C6)*/ 		0F 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) A8 1F <%t "Lt."> 19 10 00 <.I> 01 <@m_arrInterceptors> [@] <XGShip_Interceptor.m_strCallsign> 00 ( 01 <XGShip_Interceptor.m_strCallsign> ) 16 
+/*(0x05BA/0x03FE)*/ 	[#label_0x05BA]
+/*(0x05BA/0x03FE)*/ 	A5 00 <.I> 16 
+/*(0x05C5/0x0405)*/ 	06 [@label_0x01CD] 
+/*(0x05C8/0x0408)*/ [#label_0x05C8]
+/*(0x05C8/0x0408)*/ 19 1B <GEOSCAPE> 16 [@] <NullRef> 00 ( 1B <RemoveInterception> 17 16 ) 
+/*(0x05E9/0x0425)*/ 04 0B 
+/*(0x05EB/0x0427)*/ 53 
+
+
+// ON CHOOSE MAIN OPTION
+
+//This script was generated by HexToPseudoCode decompiler for use with PatchUPK/PatcherGUI tool
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGSituationRoomUI.OnChooseMainOption : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 07 [@label_0x004E] 9A 35 <XComGame.XGTacticalScreenMgr.TMenuOption.iState> <XComGame.XGTacticalScreenMgr.TMenuOption> 00 00 10 00 <.iNewView> 35 <XComGame.XGTacticalScreenMgr.TMenu.arrOptions> <XComGame.XGTacticalScreenMgr.TMenu> 00 00 01 <@m_mnuMain> 26 16 
+/*(0x003F/0x0027)*/ 	1B <PlayBadSound> 16 
+/*(0x0049/0x0031)*/ 	04 0B 
+/*(0x004B/0x0033)*/ 	06 [@label_0x0208] 
+/*(0x004E/0x0036)*/ [#label_0x004E]
+/*(0x004E/0x0036)*/ 1C <Engine.Actor.PlaySound> 20 <SoundUI.MenuSelectCue> 27 4A 4A 4A 4A 16 
+/*(0x0066/0x0046)*/ 07 [@label_0x00A4] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 06 16 
+/*(0x0084/0x005C)*/ 	19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <UIGreyMarket> 16 ) 
+/*(0x00A4/0x0078)*/ [#label_0x00A4]
+/*(0x00A4/0x0078)*/ 07 [@label_0x00EC] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 08 16 
+/*(0x00C2/0x008E)*/ 	19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <UIPendingRequests> 16 ) 
+/*(0x00E2/0x00AA)*/ 	1B <PlayOpenSound> 16 
+/*(0x00EC/0x00B4)*/ [#label_0x00EC]
+/*(0x00EC/0x00B4)*/ 07 [@label_0x0136] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 04 16 
+/*(0x010A/0x00CA)*/ 	19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <UISatelliteSitRoom> 16 ) 
+/*(0x012A/0x00E6)*/ 	1B <GoToView> 2C 04 16 
+/*(0x0136/0x00F2)*/ [#label_0x0136]
+/*(0x0136/0x00F2)*/ 07 [@label_0x0180] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 0C 16 
+/*(0x0154/0x0108)*/ 	19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <UIInfiltratorSitRoom> 16 ) 
+/*(0x0174/0x0124)*/ 	1B <GoToView> 2C 0C 16 
+/*(0x0180/0x0130)*/ [#label_0x0180]
+/*(0x0180/0x0130)*/ 07 [@label_0x01BE] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 05 16 
+/*(0x019E/0x0146)*/ 	19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <UIFinances> 16 ) 
+/*(0x01BE/0x0162)*/ [#label_0x01BE]
+/*(0x01BE/0x0162)*/ 07 [@label_0x0213] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 07 16 
+/*(0x01DC/0x0178)*/ 	19 1B <PRES> 16 [@] <XComHQPresentationLayer.m_kSituationRoom> 00 ( 19 01 <XComHQPresentationLayer.m_kSituationRoom> [@] <NullRef> 00 ( 1B <GoToView> 2C 05 16 ) ) 
+[#label_0x0208]
+/*(0x0213/0x01A3)*/ [#label_0x0213]
+
+07 [@label_summary] 9A 38 3A 10 00 <.iNewView> 01 <@m_arrOptions> 38 3A 24 0E 16
+
+    07 [@label_nomutators]
+        77 19 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.Game> 00 ( 01 <Engine.WorldInfo.Game> ) [@] <Engine.GameInfo.BaseMutator> 00 ( 01 <Engine.GameInfo.BaseMutator> ) 2A 16
+        19 19 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.Game> 00 ( 01 <Engine.WorldInfo.Game> ) [@] <Engine.GameInfo.BaseMutator> 00 ( 01 <Engine.GameInfo.BaseMutator> ) [@] <NullRef> 00 ( 1B <Mutate> 1F <%t "CampaignSummary.Show"> 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.Actor.GetALocalPlayerController.ReturnValue> 00 ( 1C <Engine.Actor.GetALocalPlayerController> 16 ) 16 )
+       [#label_nomutators]
+[#label_summary]
+/*(0x0213/0x01A3)*/ 04 0B 
+/*(0x0215/0x01A5)*/ 0B 
+/*(0x0216/0x01A6)*/ 0B 
+/*(0x0217/0x01A7)*/ 0B 
+/*(0x0218/0x01A8)*/ 0B 
+/*(0x0219/0x01A9)*/ 0B 
+/*(0x021A/0x01AA)*/ 0B 
+/*(0x021B/0x01AB)*/ 0B 
+/*(0x021C/0x01AC)*/ 0B 
+/*(0x021D/0x01AD)*/ 0B 
+/*(0x021E/0x01AE)*/ 0B 
+/*(0x021F/0x01AF)*/ 0B 
+/*(0x0220/0x01B0)*/ 0B 
+/*(0x0221/0x01B1)*/ 0B 
+/*(0x0222/0x01B2)*/ 0B 
+/*(0x0223/0x01B3)*/ 0B 
+/*(0x0224/0x01B4)*/ 53 
+
+// ON INTERCEPTOR DESTROYED
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGFacility_Hangar.OnInterceptorDestroyed : AUTO
+[REPLACEMENT_CODE]
+19 1B <GetRecapSaveData> 16 [@] <NullRef> 00 ( 1B <RecordEvent> 
+    A8
+        A8 
+            A8
+                A8
+                    A8
+                        A8 
+                            A8 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+                            16
+                            1F <%t ":"> 
+                        16
+                        19 00 <.kInterceptor> [@] <XGShip_Interceptor.GetCallsign.ReturnValue> 00 ( 1B <GetCallsign> 16 ) 
+                    16
+                    1F <%t "was shot down by a">
+                16
+                38 53 38 3A 19 19 19 00 <.kInterceptor> [@] <NullRef> 00 ( 01 <XGShip_Interceptor.m_kEngagement> ) [@] <NullRef> 00 ( 01 <XGInterception.m_kUFOTarget> ) [@] <XGShip.GetType.ReturnValue> 00 ( 1B <GetType> 16 )
+            16
+            1F <%t "over">
+        16 
+        19 1B <Country> 19 19 19 00 <.kInterceptor> [@] <NullRef> 00 ( 01 <XGShip_Interceptor.m_kEngagement> ) [@] <NullRef> 00 ( 01 <XGInterception.m_kUFOTarget> ) [@] <XGShip_UFO.GetCountry.ReturnValue> 00 ( 1B <GetCountry> 16 ) 16 [@] <XGCountry.GetName.ReturnValue> 00 ( 1B <GetName> 16 )
+    16
+16 )
+
+/*(0x0000/0x0000)*/ 1B <RemoveInterceptor> 00 <.kInterceptor> 16 
+/*(0x0013/0x000F)*/ A1 01 <@m_iJetsLost> 26 16 
+/*(0x001F/0x0017)*/ 14 2D 01 <@m_bNarrLostJet> 27 
+/*(0x002B/0x001F)*/ 1B <UpdateHangarBays> 16 
+/*(0x0035/0x0029)*/ 19 1B <GEOSCAPE> 16 [@] <NullRef> 00 ( 1B <ResetShipTimeScale> 16 ) 
+/*(0x0055/0x0045)*/ 1B <STAT_AddStat> 24 23 26 16 
+
+/*(0x0062/0x0052)*/ 04 0B 
+/*(0x0064/0x0054)*/ 53 
+
+
+// ON SATELLITE DESTROYED 
+
+//This script was generated by HexToPseudoCode decompiler for use with PatchUPK/PatcherGUI tool
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGStrategyAI.OnSatelliteDestroyed : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 19 1B <HQ> 16 [@] <NullRef> 00 ( 1B <RemoveSatellite> 00 <.iCountry> 16 ) 
+/*(0x0029/0x0021)*/ 0F 00 <.kCountry> 1B <Country> 00 <.iCountry> 16 
+/*(0x0046/0x0036)*/ 0F 00 <.kContinent> 1B <Continent> 38 3A 19 00 <.kCountry> [@] <XGCountry.GetContinent.ReturnValue> 00 ( 1B <GetContinent> 16 ) 16 
+/*(0x007B/0x005F)*/ 19 1B <GEOSCAPE> 16 [@] <NullRef> 00 ( 1B <Alert> 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.MakeAlert.ReturnValue> 00 ( 1B <MakeAlert> 24 23 00 <.iCountry> 4A 4A 4A 16 ) 16 ) 
+
+// Add new record entry
+19 1B <GetRecapSaveData> 16 [@] <NullRef> 00 ( 1B <RecordEvent> 
+    A8 A8 
+        A8 A8 19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+            19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 16
+            1F <%t ":"> 16
+    1F <%t "Satellite shot down over"> 16 
+    38 53 00 <.iCountry> 16
+16 )  
+
+/*(0x00C9/0x00A1)*/ 19 00 <.kContinent> [@] <NullRef> 00 ( 1B <AddPanic> 12 20 <XComGame.XGTacticalGameCore> [@] <XComGame.XGTacticalGameCoreNativeBase.PANIC_SAT_DESTROYED_CONTINENT> 00 ( 02 <XComGame.XGTacticalGameCoreNativeBase.PANIC_SAT_DESTROYED_CONTINENT> ) 16 ) 
+/*(0x0106/0x00CA)*/ 19 00 <.kCountry> [@] <NullRef> 00 ( 1B <AddPanic> 12 20 <XComGame.XGTacticalGameCore> [@] <XComGame.XGTacticalGameCoreNativeBase.PANIC_SAT_DESTROYED_COUNTRY> 00 ( 02 <XComGame.XGTacticalGameCoreNativeBase.PANIC_SAT_DESTROYED_COUNTRY> ) 4A 16 ) 
+/*(0x0144/0x00F4)*/ A1 35 <XGStrategyActorNativeBase.TMonthlySummary.iSatellitesLost> <XGStrategyActorNativeBase.TMonthlySummary> 00 01 19 00 <.kContinent> [@] <XGContinent.m_kMonthly> 00 ( 01 <XGContinent.m_kMonthly> ) 26 16 
+/*(0x0178/0x0114)*/ 0F 10 00 <.iCountry> 35 <XGStrategyAI.TResistance.arrCountries> <@TResistance> 00 01 01 <@m_kResistance> 25 
+/*(0x01A0/0x012C)*/ 0F 10 00 <.iCountry> 35 <XGStrategyAI.TResistance.arrNoResistance> <@TResistance> 00 01 01 <@m_kResistance> 25 
+/*(0x01C8/0x0144)*/ 1B <STAT_AddStat> 24 18 26 16 
+/*(0x01D5/0x0151)*/ 58 01 <@m_arrUFOs> 00 <.kUFO> 00 4A [@label_0x0259] 
+/*(0x01EC/0x0160)*/ 	0F 19 00 <.kUFO> [@] <XGShip_UFO.m_iDetectedBy> 00 ( 01 <XGShip_UFO.m_iDetectedBy> ) 1D <%i -1> 
+/*(0x0210/0x0178)*/ 	19 00 <.kUFO> [@] <NullRef> 00 ( 1B <SetDetection> 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.DetectUFO.ReturnValue> 00 ( 1B <DetectUFO> 00 <.kUFO> 16 ) 16 ) 
+/*(0x0258/0x01B0)*/ 	31 
+/*(0x0259/0x01B1)*/ [#label_0x0259]
+/*(0x0259/0x01B1)*/ 30 
+/*(0x025A/0x01B2)*/ 04 0B 
+/*(0x025C/0x01B4)*/ 53 
+
+// ON UFO SHOT DOWN
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGStrategyAI.OnUFOShotDown : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 19 19 00 <.kUFO> [@] <XGShip_UFO.m_kObjective> 00 ( 01 <XGShip_UFO.m_kObjective> ) [@] <NullRef> 00 ( 1B <NotifyOfCrash> 00 <.kUFO> 16 ) 
+/*(0x003D/0x0029)*/ 1B <DetermineCrashLoot> 00 <.kUFO> 19 1B <HANGAR> 16 [@] <XGFacility_Hangar.ItemTypeToShipWeapon.ReturnValue> 00 ( 1B <ItemTypeToShipWeapon> 19 00 <.kJet> [@] <XGShip_Interceptor.GetWeapon.ReturnValue> 00 ( 1B <GetWeapon> 16 ) 16 ) 16 
+/*(0x008F/0x006B)*/ 1B <AIAddNewMission> 24 03 00 <.kUFO> 16 
+/*(0x00A4/0x007C)*/ 1B <STAT_AddStat> 24 22 26 16 
+/*(0x00B1/0x0089)*/ 1B <STAT_AddProfileStat> 24 0D 26 16 
+/*(0x00BE/0x0096)*/ 07 [@label_0x00DD] 99 1B <STAT_GetProfileStat> 24 0D 16 2C 28 16 
+/*(0x00D1/0x00A9)*/ 	1B <Achieve> 24 0A 16 
+/*(0x00DD/0x00B5)*/ [#label_0x00DD]
+/*(0x00DD/0x00B5)*/ 19 1B <Country> 19 00 <.kUFO> [@] <XGShip_UFO.GetCountry.ReturnValue> 00 ( 1B <GetCountry> 16 ) 16 [@] <NullRef> 00 ( 1B <AddPanic> 12 20 <XComGame.XGTacticalGameCore> [@] <XComGame.XGTacticalGameCoreNativeBase.PANIC_UFO_SHOOTDOWN> 00 ( 02 <XComGame.XGTacticalGameCoreNativeBase.PANIC_UFO_SHOOTDOWN> ) 4A 16 ) 
+/*(0x013B/0x00FB)*/ 19 1B <Continent> 19 00 <.kUFO> [@] <XGShip_UFO.GetContinent.ReturnValue> 00 ( 1B <GetContinent> 16 ) 16 [@] <NullRef> 00 ( 1B <RecordCountryHelped> 38 3D 19 00 <.kUFO> [@] <XGShip_UFO.GetCountry.ReturnValue> 00 ( 1B <GetCountry> 16 ) 16 ) 
+/*(0x019B/0x0147)*/ 1B <Achieve> 24 2E 16 
+/*(0x01A7/0x0153)*/ 19 1B <SITROOM> 16 [@] <NullRef> 00 ( 1B <PushNarrativeHeadline> 24 00 16 ) 
+/*(0x01C9/0x0171)*/ A1 10 38 3A 35 <XGStrategyActorNativeBase.TShip.eType> <XGStrategyActorNativeBase.TShip> 00 00 19 00 <.kUFO> [@] <XGShip.m_kTShip> 00 ( 01 <XGShip.m_kTShip> ) 01 <@m_arrUFOsShotDown> 26 16 
+/*(0x0209/0x0199)*/ 07 [@label_0x0222] 1B <CheckForHunterKiller> 16 
+/*(0x0216/0x01A6)*/ 	1B <Achieve> 24 19 16 
+/*(0x0222/0x01B2)*/ [#label_0x0222]
+
+
+19 1B <GetRecapSaveData> 16 [@] <NullRef> 00 ( 1B <RecordEvent> 
+    A8 
+        A8
+
+            A8 
+                A8
+                    A8
+                        A8 
+                            A8 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+                                19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+                            16
+                            1F <%t ":"> 
+                        16
+                        19 00 <.kJet> [@] <XGShip_Interceptor.GetCallsign.ReturnValue> 00 ( 1B <GetCallsign> 16 )
+                    16
+                    1F <%t "shot down a"> 
+                16
+                38 53 38 3A 19 00 <.kUFO> [@] <XGShip.GetType.ReturnValue> 00 ( 1B <GetType> 16 )
+            16
+            1F <%t "over">
+        16 
+        19 1B <Country> 19 00 <.kUFO> [@] <XGShip_UFO.GetCountry.ReturnValue> 00 ( 1B <GetCountry> 16 ) 16 [@] <XGCountry.GetName.ReturnValue> 00 ( 1B <GetName> 16 )
+    16
+16 )  
+
+/*(0x0222/0x01B2)*/ 04 0B 
+/*(0x0224/0x01B4)*/ 53 
+
+// POST LOAD SAVE GAME
+//
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGStrategy.PostLoadSaveGame : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 07 [@label_0x0065] 84 97 19 1B <STORAGE> 16 [@] <XGStorage.GetNumItemsAvailable.ReturnValue> 00 ( 1B <GetNumItemsAvailable> 2C 3A 16 ) 25 16 18 [@] ( 97 19 1B <STORAGE> 16 [@] <XGStorage.GetNumItemsAvailable.ReturnValue> 00 ( 1B <GetNumItemsAvailable> 2C 50 16 ) 25 16 16 ) 
+/*(0x0052/0x004A)*/ 	61 18 1E <%f 0.1> 27 21 <NotifyUserOfInvalidSave> 4A 16 
+/*(0x0065/0x005D)*/ [#label_0x0065]
+    07 [@label_nomutators]
+        77 19 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.Game> 00 ( 01 <Engine.WorldInfo.Game> ) [@] <Engine.GameInfo.BaseMutator> 00 ( 01 <Engine.GameInfo.BaseMutator> ) 2A 16
+        19 19 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.Game> 00 ( 01 <Engine.WorldInfo.Game> ) [@] <Engine.GameInfo.BaseMutator> 00 ( 01 <Engine.GameInfo.BaseMutator> ) [@] <NullRef> 00 ( 1B <Mutate> 1F <%t "XGStrategy.PostLoadSaveGame"> 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.Actor.GetALocalPlayerController.ReturnValue> 00 ( 1C <Engine.Actor.GetALocalPlayerController> 16 ) 16 )
+       [#label_nomutators]
+/*(0x0065/0x005D)*/ 04 0B 
+/*(0x0067/0x005F)*/ 53 
+
+//RECORD EXALT CELL PLACEMENT ATTEMPT
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGExaltSimulation.RecordExaltCellPlacementAttempt : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 0F 00 <.OutputString> 
+70 
+    A8 
+        A8 
+            19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+            19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+        16 
+        1F <%t ": Exalt "> 
+    16 
+    70 
+        70 
+            70 
+                70 
+                    45 2D 00 <.bSuccess> [@] ( 1F <%t "successfully placed"> ) [@] ( 1F <%t "failed to place"> ) 
+                    1F <%t " a cell in "> 
+                16 
+                1A 38 3A 00 <.Country> 12 20 <Class.XGLocalizedData> [@] <XGLocalizedData.CountryNames> 00 ( 02 <XGLocalizedData.CountryNames> )
+            16
+            1F <%t " "> 
+        16 
+        70 
+            45 2D 00 <.bIgnoredDiceRoll> [@] ( 1F <%t "(Ignored Dice Roll)"> ) [@] ( 1F <%t ""> ) 
+            1F <%t "
+"> 
+        16 
+    16 
+16
+/*(0x0126/0x00F2)*/ 04 00 <.OutputString> 
+/*(0x0130/0x00F8)*/ 04 3A <.ReturnValue> 
+/*(0x013A/0x00FE)*/ 53 
+
+// RECORD MISSION RESULT
+
+//This script was generated by HexToPseudoCode decompiler for use with PatchUPK/PatcherGUI tool
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGStrategy.RecordMissionResult : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 0F 00 <.MissionType> 38 3D 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_iMissionType> 00 ( 01 <XComGame.XGBattleDesc.m_iMissionType> ) 
+/*(0x003F/0x0027)*/ 0F 00 <.ResultType> 38 3D 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_iBattleResult> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_iBattleResult> ) 
+/*(0x007E/0x004E)*/ 0F 00 <.MissionResultString> 
+
+70 
+	70 
+		70 
+			70 
+				70 
+					70 
+						70
+							70 
+								70 
+									70 
+										70 
+											70 
+												70 
+													A8 
+														A8 
+															70 
+																1F <%t ""> 
+																19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+															16 
+															19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+														16 
+														1F <%t ": Completed Mission
+"> 
+													16 
+													1F <%t "########################################################
+"> 
+												16 
+												19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_strOpName> 00 ( 01 <XComGame.XGBattleDesc.m_strOpName> ) 
+											16 
+											1F <%t "
+"> 
+										16 
+										1F <%t "Mission Type: "> 
+									16 
+									38 52 00 <.MissionType> 
+								16 
+								1F <%t "
+"> 
+							16 
+							1F <%t "
+Map: ">
+						16
+						19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_strMapName> 00 ( 01 <XComGame.XGBattleDesc.m_strMapName> ) 
+					16 
+					1F <%t "
+"> 
+				16
+				1F <%t "Result: ">
+			16 
+			38 52 00 <.ResultType> 
+		16 
+		1F <%t "
+"> 
+	16 
+	1F <%t "
+">
+16 
+
+0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "Location: "> 16 
+
+0F 00 <.MissionResultString> 70 00 <.MissionResultString> 
+								// GEOSCAPE().GetMission().GetLocationString()
+								19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.GetMission.ReturnValue> 00 ( 1B <GetMission> 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_iMissionID> 00 ( 01 <XComGame.XGBattleDesc.m_iMissionID> ) 16 ) [@] <XGMission.GetLocationString.ReturnValue> 00 ( 1B <GetLocationString> 16 ) 16
+
+0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "
+Coordinates: "> 16
+0F 00 <.MissionResultString> 70 00 <.MissionResultString> 38 58 19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.GetMission.ReturnValue> 00 ( 1B <GetMission>
+										19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_iMissionID> 00 ( 01 <XComGame.XGBattleDesc.m_iMissionID> ) 16 ) [@] <XGMission.m_v2Coords> 00 ( 01 <XGMission.m_v2Coords> ) 16
+0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "
+X-Com Squad
+">  16 
+
+
+/*(0x0231/0x01B5)*/ 0F 00 <.Index> 25 
+/*(0x023C/0x01BC)*/ [#label_0x023C]
+/*(0x023C/0x01BC)*/ 07 [@label_0x06C2] 96 00 <.Index> 36 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_arrSoldiers> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_arrSoldiers> ) 16 
+/*(0x027E/0x01E6)*/ 	0F 00 <.Soldier> 10 00 <.Index> 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_arrSoldiers> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_arrSoldiers> ) 
+/*(0x02C5/0x0211)*/ 	07 [@label_0x032D] 84 98 35 <XComGame.XComContentManager.TTransferSoldier.iHPAfterCombat> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 25 16 18 [@] ( 2D 35 <XComGame.XComContentManager.TTransferSoldier.bLeftBehind> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 16 ) 
+/*(0x0309/0x023D)*/ 		0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "    (KIA) "> 16 
+/*(0x032A/0x0256)*/ 		06 [@label_0x03A9] 
+/*(0x032D/0x0259)*/ 	[#label_0x032D]
+/*(0x032D/0x0259)*/ 	0F 00 <.MissionResultString> 70 70 70 70 70 00 <.MissionResultString> 1F <%t "   "> 16 38 53 35 <XComGame.XComContentManager.TTransferSoldier.iHPAfterCombat> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 16 1F <%t "\"> 16 38 53 1A 25 35 <XComGame.XGTacticalGameCoreNativeBase.TCharacter.aStats> <XComGame.XGTacticalGameCoreNativeBase.TCharacter> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kChar> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 16 1F <%t " HP "> 16 
+/*(0x03A9/0x02AD)*/ 	[#label_0x03A9]
+
+/*	0F 00 <.MissionResultString> 70 A8 A8 A8 70 00 <.MissionResultString> 45 9B 38 3A 35 <XComGame.XGTacticalGameCoreNativeBase.TCharacter.eClass> <XComGame.XGTacticalGameCoreNativeBase.TCharacter> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kChar> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 38 3A 24 00 16 [@] ( 1B <GetSoldierClassName> 35 <XComGame.XGTacticalGameCoreNativeBase.TCharacter.eClass> <XComGame.XGTacticalGameCoreNativeBase.TCharacter> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kChar> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 4A 16 ) [@] ( 1F <%t ""> ) 16 */
+
+0F 00 <.MissionResultString> 70 A8 A8 A8 70 00 <.MissionResultString> 
+	45 9B 38 3A 35 <XComGame.XGTacticalGameCoreNativeBase.TClass.eType> <XComGame.XGTacticalGameCoreNativeBase.TClass> 00 00 35 <XComGame.XGTacticalGameCoreNativeBase.TSoldier.kClass> <XComGame.XGTacticalGameCoreNativeBase.TSoldier> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kSoldier> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 38 3A 24 00 16 [@] ( 1B <GetSoldierClassName> 35 <XComGame.XGTacticalGameCoreNativeBase.TClass.eType> <XComGame.XGTacticalGameCoreNativeBase.TClass> 00 00 35 <XComGame.XGTacticalGameCoreNativeBase.TSoldier.kClass> <XComGame.XGTacticalGameCoreNativeBase.TSoldier> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kSoldier> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 4A 16 ) [@] ( 1F <%t ""> ) 16 
+
+
+	19 19 2E <XComGame.XComGameReplicationInfo> 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.GRI> 00 ( 01 <Engine.WorldInfo.GRI> ) [@] <XComGame.XComGameReplicationInfo.m_kGameCore> 00 ( 01 <XComGame.XComGameReplicationInfo.m_kGameCore> ) [@] <XComGame.XGTacticalGameCore.GetRankString.ReturnValue> 00 ( 1B <GetRankString> 35 <XComGame.XGTacticalGameCoreNativeBase.TSoldier.iRank> <XComGame.XGTacticalGameCoreNativeBase.TSoldier> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kSoldier> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 4A 4A 16 ) 16 35 <XComGame.XGTacticalGameCoreNativeBase.TSoldier.strFirstName> <XComGame.XGTacticalGameCoreNativeBase.TSoldier> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kSoldier> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 16 35 <XComGame.XGTacticalGameCoreNativeBase.TSoldier.strLastName> <XComGame.XGTacticalGameCoreNativeBase.TSoldier> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kSoldier> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 16 1F <%t " "> 16 
+/*(0x0538/0x03AC)*/ 	0F 00 <.Index2> 25 
+/*(0x0543/0x03B3)*/ 	[#label_0x0543]
+/*(0x0543/0x03B3)*/ 	07 [@label_0x069C] 96 00 <.Index2> 2C 10 16 
+/*(0x0553/0x03BF)*/ 		07 [@label_0x068E] 9B 1A 00 <.Index2> 35 <XComGame.XGTacticalGameCoreNativeBase.TInventory.arrLargeItems> <XComGame.XGTacticalGameCoreNativeBase.TInventory> 00 00 35 <XComGame.XGTacticalGameCoreNativeBase.TCharacter.kInventory> <XComGame.XGTacticalGameCoreNativeBase.TCharacter> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kChar> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 25 16 
+/*(0x05A5/0x03F1)*/ 			0F 00 <.ItemValue> 38 3D 1A 00 <.Index2> 35 <XComGame.XGTacticalGameCoreNativeBase.TInventory.arrLargeItems> <XComGame.XGTacticalGameCoreNativeBase.TInventory> 00 00 35 <XComGame.XGTacticalGameCoreNativeBase.TCharacter.kInventory> <XComGame.XGTacticalGameCoreNativeBase.TCharacter> 00 00 35 <XComGame.XComContentManager.TTransferSoldier.kChar> <XComGame.XComContentManager.TTransferSoldier> 00 00 00 <.Soldier> 
+/*(0x05FD/0x0425)*/ 			0F 00 <.MissionResultString> 70 70 70 00 <.MissionResultString> 1F <%t "("> 16 19 19 2E <XComGame.XComGameReplicationInfo> 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.GRI> 00 ( 01 <Engine.WorldInfo.GRI> ) [@] <XComGame.XComGameReplicationInfo.m_kGameCore> 00 ( 01 <XComGame.XComGameReplicationInfo.m_kGameCore> ) [@] <XComGame.XGTacticalGameCore.GetLocalizedItemName.ReturnValue> 00 ( 1B <GetLocalizedItemName> 00 <.ItemValue> 16 ) 16 1F <%t ") "> 16 
+/*(0x068E/0x0486)*/ 		[#label_0x068E]
+/*(0x068E/0x0486)*/ 		A3 00 <.Index2> 16 
+/*(0x0699/0x048D)*/ 		06 [@label_0x0543] 
+/*(0x069C/0x0490)*/ 	[#label_0x069C]
+/*(0x069C/0x0490)*/ 	0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "
+"> 16 
+/*(0x06B4/0x04A0)*/ 	A3 00 <.Index> 16 
+/*(0x06BF/0x04A7)*/ 	06 [@label_0x023C] 
+/*(0x06C2/0x04AA)*/ [#label_0x06C2]
+/*(0x06C2/0x04AA)*/ 0F 00 <.MissionResultString> 70 70 00 <.MissionResultString> 1F <%t "
+"> 16 1F <%t "Opposition (pods): "> 16 
+/*(0x06F1/0x04D1)*/ 0F 00 <.Index> 25 
+/*(0x06FC/0x04D8)*/ [#label_0x06FC]
+/*(0x06FC/0x04D8)*/ 07 [@label_0x0914] 96 00 <.Index> 36 35 <XComGame.XGGameData.TAlienSquad.arrPods> <XComGame.XGGameData.TAlienSquad> 00 00 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_kAlienSquad> 00 ( 01 <XComGame.XGBattleDesc.m_kAlienSquad> ) 16 
+/*(0x0751/0x050D)*/ 	0F 00 <.AlienPod> 10 00 <.Index> 35 <XComGame.XGGameData.TAlienSquad.arrPods> <XComGame.XGGameData.TAlienSquad> 00 00 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kBattleDesc> 00 ( 01 <XComGame.StrategyGameTransport.m_kBattleDesc> ) [@] <XComGame.XGBattleDesc.m_kAlienSquad> 00 ( 01 <XComGame.XGBattleDesc.m_kAlienSquad> ) 
+/*(0x07AB/0x0543)*/ 	0F 00 <.OppositionString> 70 70 70 00 <.OppositionString> 1F <%t "Pod #"> 16 38 53 00 <.Index> 16 1F <%t "
+"> 16 
+/*(0x07D9/0x0565)*/ 	0F 00 <.OppositionString> 70 00 <.OppositionString> 38 52 35 <XComGame.XGGameData.TAlienPod.eMain> <XComGame.XGGameData.TAlienPod> 00 00 00 <.AlienPod> 16 
+/*(0x080C/0x0584)*/ 	A3 00 <.EnemyCount> 16 
+/*(0x0817/0x058B)*/ 	07 [@label_0x0882] 9B 38 3A 35 <XComGame.XGGameData.TAlienPod.eSupport1> <XComGame.XGGameData.TAlienPod> 00 00 00 <.AlienPod> 38 3A 24 00 16 
+/*(0x083E/0x05A6)*/ 		0F 00 <.OppositionString> 70 70 00 <.OppositionString> 1F <%t ", "> 16 38 52 35 <XComGame.XGGameData.TAlienPod.eSupport1> <XComGame.XGGameData.TAlienPod> 00 00 00 <.AlienPod> 16 
+/*(0x0877/0x05CB)*/ 		A3 00 <.EnemyCount> 16 
+/*(0x0882/0x05D2)*/ 	[#label_0x0882]
+/*(0x0882/0x05D2)*/ 	07 [@label_0x08ED] 9B 38 3A 35 <XComGame.XGGameData.TAlienPod.eSupport2> <XComGame.XGGameData.TAlienPod> 00 00 00 <.AlienPod> 38 3A 24 00 16 
+/*(0x08A9/0x05ED)*/ 		0F 00 <.OppositionString> 70 70 00 <.OppositionString> 1F <%t ", "> 16 38 52 35 <XComGame.XGGameData.TAlienPod.eSupport2> <XComGame.XGGameData.TAlienPod> 00 00 00 <.AlienPod> 16 
+/*(0x08E2/0x0612)*/ 		A3 00 <.EnemyCount> 16 
+/*(0x08ED/0x0619)*/ 	[#label_0x08ED]
+/*(0x08ED/0x0619)*/ 	0F 00 <.OppositionString> 70 00 <.OppositionString> 1F <%t "
+
+"> 16 
+/*(0x0906/0x062A)*/ 	A3 00 <.Index> 16 
+/*(0x0911/0x0631)*/ 	06 [@label_0x06FC] 
+/*(0x0914/0x0634)*/ [#label_0x0914]
+/*(0x0914/0x0634)*/ 0F 00 <.MissionResultString> 70 A8 A8 70 00 <.MissionResultString> 1F <%t " ("> 16 38 53 00 <.EnemyCount> 16 1F <%t " Aliens)
+"> 16 00 <.OppositionString> 16 
+/*(0x0952/0x0662)*/ 0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "Artifacts recovered:
+"> 16 
+/*(0x097E/0x0686)*/ 0F 00 <.Index> 25 
+/*(0x0989/0x068D)*/ [#label_0x0989]
+/*(0x0989/0x068D)*/ 07 [@label_0x0B0B] 96 00 <.Index> 36 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_arrArtifacts> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_arrArtifacts> ) 16 
+/*(0x09CB/0x06B7)*/ 	07 [@label_0x0AFD] 97 10 00 <.Index> 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_arrArtifacts> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_arrArtifacts> ) 25 16 
+/*(0x0A0E/0x06E2)*/ 		0F 00 <.ItemValue> 38 3D 00 <.Index> 
+/*(0x0A23/0x06EF)*/ 		0F 00 <.MissionResultString> 70 70 70 70 70 00 <.MissionResultString> 1F <%t "    "> 16 19 19 2E <XComGame.XComGameReplicationInfo> 19 12 20 <Engine.Engine> [@] <Engine.Engine.GetCurrentWorldInfo.ReturnValue> 00 ( 1C <Engine.Engine.GetCurrentWorldInfo> 16 ) [@] <Engine.WorldInfo.GRI> 00 ( 01 <Engine.WorldInfo.GRI> ) [@] <XComGame.XComGameReplicationInfo.m_kGameCore> 00 ( 01 <XComGame.XComGameReplicationInfo.m_kGameCore> ) [@] <XComGame.XGTacticalGameCore.GetLocalizedItemName.ReturnValue> 00 ( 1B <GetLocalizedItemName> 00 <.ItemValue> 16 ) 16 1F <%t " x"> 16 38 53 10 00 <.Index> 19 19 01 <@m_kStrategyTransport> [@] <XComGame.StrategyGameTransport.m_kCargo> 00 ( 01 <XComGame.StrategyGameTransport.m_kCargo> ) [@] <XComGame.XGDropshipCargoInfo.m_arrArtifacts> 00 ( 01 <XComGame.XGDropshipCargoInfo.m_arrArtifacts> ) 16 1F <%t "
+"> 16 
+/*(0x0AFD/0x0781)*/ 	[#label_0x0AFD]
+/*(0x0AFD/0x0781)*/ 	A3 00 <.Index> 16 
+/*(0x0B08/0x0788)*/ 	06 [@label_0x0989] 
+/*(0x0B0B/0x078B)*/ [#label_0x0B0B]
+/*(0x0B0B/0x078B)*/ 0F 00 <.MissionResultString> 70 00 <.MissionResultString> 1F <%t "
+########################################################
+"> 16 
+/*(0x0B5C/0x07D4)*/ 04 00 <.MissionResultString> 
+/*(0x0B66/0x07DA)*/ 04 3A <.ReturnValue> 
+/*(0x0B70/0x07E0)*/ 53 
+
+// RECORD RESOURCE TRANSACTION
+
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGStrategyActor.RecordResourceTransaction : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 0F 00 <.OutputString> 70 70 70 70 70 70 70 A8 A8 19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 16 1F <%t ": X-Com "> 16 45 97 00 <.iAmount> 25 16 [@] ( 1F <%t "gained "> ) [@] ( 1F <%t "lost "> ) 16 38 53 00 <.iAmount> 16 1F <%t " of resource "> 16 38 52 00 <.ResourceType> 16 1F <%t " "> 16 45 2D 00 <.bWasRefund> [@] ( 1F <%t "(Refund)"> ) [@] ( 1F <%t ""> ) 16 1F <%t "
+"> 16 
+/*(0x01B0/0x0140)*/ 04 00 <.OutputString> 
+/*(0x01BA/0x0146)*/ 04 3A <.ReturnValue> 
+/*(0x01C4/0x014C)*/ 53 
+
+// REMOVE MISSION
+
+//This script was generated by HexToPseudoCode decompiler for use with PatchUPK/PatcherGUI tool
+UPK_FILE = XComStrategyGame.upk
+OBJECT = XGGeoscape.RemoveMission : AUTO
+[REPLACEMENT_CODE]
+/*(0x0000/0x0000)*/ 0B 
+/*(0x0001/0x0001)*/ 0B 
+/*(0x0002/0x0002)*/ 0B 
+
+07 [@label_isExpired] F2 27 2D 00 <.bExpired> 16
+E7 1F <%t "Removing Mission!"> 2A 16
+19 1B <GetRecapSaveData> 16 [@] <NullRef> 00 ( 1B <RecordEvent> 
+    A8
+        A8 
+            A8
+                A8
+                    A8 
+                        A8 
+                            19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetDateString.ReturnValue> 00 ( 1B <GetDateString> 16 ) 
+                            19 19 1B <GEOSCAPE> 16 [@] <XGGeoscape.m_kDateTime> 00 ( 01 <XGGeoscape.m_kDateTime> ) [@] <XGDateTime.GetTimeString.ReturnValue> 00 ( 1B <GetTimeString> 16 ) 
+                        16
+                        1F <%t ":"> 
+                    16
+                    1F <%t "Mission expired:">
+                16
+                38 53 19 00 <.kMission> [@] <NullRef> 00 ( 01 <XGMission.m_iMissionType> )
+            16
+            1F <%t "in">
+        16
+        19 00 <.kMission> [@] <XGMission.GetLocationString.ReturnValue> 00 ( 1B <GetLocationString> 16 )
+    16
+16 )
+[#label_isExpired]
+
+/*(0x0003/0x0003)*/ 07 [@label_0x0178] 81 2D 00 <.bFirstMission> 16 
+/*(0x0012/0x000E)*/ 	19 1B <AI> 16 [@] <NullRef> 00 ( 1B <ApplyMissionPanic> 00 <.kMission> 2D 00 <.bXComSuccess> 2D 00 <.bExpired> 2D 00 <.bDontApplyToContinent> 16 ) 
+/*(0x0059/0x0041)*/ 	07 [@label_0x00D2] 9A 19 00 <.kMission> [@] <XGMission.m_iMissionType> 00 ( 01 <XGMission.m_iMissionType> ) 2C 04 16 
+/*(0x007E/0x005A)*/ 		07 [@label_0x00D2] 2D 00 <.bXComSuccess> 
+/*(0x008B/0x0063)*/ 			19 1B <AI> 16 [@] <NullRef> 00 ( 1B <RemoveUFO> 19 2E <Class.XGMission_UFOLanded> 00 <.kMission> [@] <XGMission_UFOLanded.kUFO> 00 ( 01 <XGMission_UFOLanded.kUFO> ) 16 ) 
+/*(0x00D2/0x0096)*/ 	[#label_0x00D2]
+/*(0x00D2/0x0096)*/ 	0F 00 <.kSkyranger> 19 1B <HANGAR> 16 [@] <XGFacility_Hangar.m_kSkyranger> 00 ( 01 <XGFacility_Hangar.m_kSkyranger> ) 
+/*(0x00FB/0x00B3)*/ 	07 [@label_0x0178] 82 72 19 00 <.kSkyranger> [@] <XGShip.m_kMission> 00 ( 01 <XGShip.m_kMission> ) 00 <.kMission> 16 18 [@] ( 2D 00 <.bExpired> 16 ) 
+/*(0x0136/0x00DA)*/ 		1B <Alert> 1B <MakeAlert> 24 0A 4A 4A 4A 4A 16 16 
+/*(0x0150/0x00F4)*/ 		19 00 <.kSkyranger> [@] <NullRef> 00 ( 1B <SetMission> 01 <@m_kReturnMission> 16 ) 
+/*(0x0178/0x0110)*/ [#label_0x0178]
+/*(0x0178/0x0110)*/ 56 01 <@m_arrMissions> [@] ( 00 <.kMission> 16 ) 
+/*(0x018E/0x011E)*/ 07 [@label_0x01DF] 77 19 00 <.kMission> [@] <XGMission.m_kDesc> 00 ( 01 <XGMission.m_kDesc> ) 2A 16 
+/*(0x01B2/0x0136)*/ 	19 19 00 <.kMission> [@] <XGMission.m_kDesc> 00 ( 01 <XGMission.m_kDesc> ) [@] <Engine.Actor.Destroy.ReturnValue> 00 ( 61 17 16 ) 
+/*(0x01DF/0x0153)*/ [#label_0x01DF]
+/*(0x01DF/0x0153)*/ 07 [@label_0x0252] 77 19 00 <.kMission> [@] <XGStrategyActor.GetEntity.ReturnValue> 00 ( 1B <GetEntity> 16 ) 2A 16 
+/*(0x0204/0x0170)*/ 	19 00 <.kMission> [@] <NullRef> 00 ( 1B <HideEntity> 27 16 ) 
+/*(0x0224/0x0188)*/ 	19 19 00 <.kMission> [@] <XGStrategyActor.GetEntity.ReturnValue> 00 ( 1B <GetEntity> 16 ) [@] <Engine.Actor.Destroy.ReturnValue> 00 ( 61 17 16 ) 
+/*(0x0252/0x01AA)*/ [#label_0x0252]
+/*(0x0252/0x01AA)*/ 19 00 <.kMission> [@] <Engine.Actor.Destroy.ReturnValue> 00 ( 61 17 16 ) 
+/*(0x026A/0x01BA)*/ 19 1B <PRES> 16 [@] <NullRef> 00 ( 1B <MissionNotify> 16 ) 
+/*(0x028A/0x01D6)*/ 07 [@label_0x02D1] 82 2D 00 <.bExpired> 18 [@] ( 81 1B <IsBusy> 16 16 16 ) 
+/*(0x02A8/0x01F0)*/ 	19 1B <BARRACKS> 16 [@] <NullRef> 00 ( 1B <ClearSquad> 00 <.kSkyranger> 16 ) 
+/*(0x02D1/0x0211)*/ [#label_0x02D1]
+/*(0x02D1/0x0211)*/ 04 0B 
+/*(0x02D3/0x0213)*/ 53 
+
+// CUSTOM CHECKPOINTS
+
+UPK_FILE=XComGame.upk
+OBJECT=Checkpoint
+
+[BEFORE_CODE]
+<%u 0x080000B2>
+<Core.Object>
+<None>
+[AFTER_CODE]
+<%u 0x080000B6>
+<Core.Object>
+<Checkpoint>
+
+OBJECT=Checkpoint.ActorClassesToRecord
+[BEFORE_CODE]
+<%u 0x00400002>
+[AFTER_CODE]
+<%u 0x00404002>
+
+OBJECT=Checkpoint.ActorClassesToRecord.ActorClassesToRecord
+[BEFORE_CODE]
+<%u 0x00000001>
+<%u 0x00000000>
+[AFTER_CODE]
+<%u 0x00000001>
+<%u 0x00004000>
+
+UPK_FILE=XComStrategyGame.upk
+OBJECT=Checkpoint_StrategyGame
+
+[BEFORE_CODE]
+<%u 0x00000032>
+<Core.Object>
+<None>
+[AFTER_CODE]
+<%u 0x00000036>
+<Core.Object>
+<Checkpoint>
+
+
+// INI UPDATES
+
+/*<CONFIG>
+FILENAME=XComGame\Config\DefaultMutatorLoader.ini
+SECTION=XComMutator.XComMutatorLoader
+ADDLINE=arrStrategicMutators="XComCampaignSummary.CampaignSummaryMutator"
+</CONFIG>*/
