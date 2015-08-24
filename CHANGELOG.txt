@@ -1,0 +1,6 @@
+
+XXXX-XX-XX -- Version 1.1B Release
+    * Faster processing of journal backlog, especially while the 
+      CS UI is shown.
+
+2015-08-23 -- Version 1.0B Release

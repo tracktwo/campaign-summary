@@ -93,6 +93,7 @@ function HideUI()
     PRES().m_kSituationRoom.AS_ShowTicker();
     PRES().m_kSituationRoom.m_kSitRoomHUD.SetContinentInfo("", "", 0);
     PRES().m_kSituationRoom.m_kSitRoomHUD.SetCountryInfo("", "", 0);
+    m_kJournalProcessor.UIRemoved();
 }
 
 function ShowUI()
@@ -114,7 +115,7 @@ function ShowUI()
     m_kUI = Spawn(class'UICampaignSummary',self);
     m_kUI.SetMgr(self);
     m_kUI.Init(XComPlayerController(Owner), PRES().GetHUD());
-
+    m_kJournalProcessor.UIDisplayed();
 }
 
 function String GetMissionTypeString(XGGameData.EMissionType eType)

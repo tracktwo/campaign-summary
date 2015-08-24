@@ -21,6 +21,7 @@ var int m_iLastProcessedIndex;
 var XGDateTime m_kLastProcessedDate;
 var array<TDayRecord> m_kRecords;
 var bool m_bSawSatelliteShotDown;
+var bool m_bUIDisplayed; //transient
 
 function XGGeoscape GEOSCAPE()
 {
@@ -1088,18 +1089,45 @@ function ProcessOneEntry(XGRecapSaveData recapData)
 function ProcessEntries()
 {
     local XGRecapSaveData recapData;
+    local int count;
+    local int i;
 
     recapData = XComHeadquartersGame(class'Engine'.static.GetCurrentWorldInfo().Game).GetGameCore().m_kRecapSaveData;
 
+    count = (m_bUIDisplayed ? 20 : 10);
+
+    // Process entries until we run out or hit our counter max.
+    for (i = 0; i < count; ++i)
+    {
+        if (recapData.m_aJournalEvents.Length > (m_iLastProcessedIndex+1) && GEOSCAPE().m_kDateTime != none)
+        {
+            ProcessOneEntry(recapData);
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    // Set the new timer based on whether or not there are more events to process.
     if (recapData.m_aJournalEvents.Length > (m_iLastProcessedIndex+1) && GEOSCAPE().m_kDateTime != none)
     {
-        ProcessOneEntry(recapData);
         SetTimer(0.1, false, 'ProcessEntries');
     }
     else
     {
-        SetTimer(5, false, 'ProcessEntries');
+        SetTimer(3, false, 'ProcessEntries');
     }
+}
+
+function UIDisplayed()
+{
+    m_bUIDisplayed = true;
+}
+
+function UIRemoved()
+{
+    m_bUIDisplayed = true;
 }
 
 defaultproperties
@@ -1107,5 +1135,6 @@ defaultproperties
     m_iLastProcessedIndex=-1
     m_kLastProcessedDate=none
     m_bSawSatelliteShotDown=false
+    m_bUIDisplayed=false
 }
 
